@@ -1,8 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
-  entry: "./index.ts",
+//   mode: 'development',
+  entry: "./build/index.js",
   output: {
       filename: "goomath.js",
       path: path.resolve(__dirname,'./')

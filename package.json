@@ -1,0 +1,36 @@
+{
+  "name": "goomath",
+  "version": "1.0.162",
+  "description": "A library about xy-coordinate",
+  "main": "goomath.js",
+  "types": "./index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack && node copy/copyres.js && npm version patch",
+    "copyres": "node copy/copyres.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alanbaba2018/goomath.git"
+  },
+  "keywords": [
+    "math"
+  ],
+  "files": [
+    "dist"
+  ],
+  "author": "AlanBaBa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alanbaba2018/goomath/issues"
+  },
+  "homepage": "https://github.com/Alanbaba2018/goomath#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^5.2.1",
+    "typescript": "^3.1.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1"
+  }
+}

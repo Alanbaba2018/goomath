@@ -5,13 +5,18 @@ const rootPath = path.resolve(__dirname, '../lib');
 const copyPath = path.resolve(__dirname, '../dist');
 
 fs.exists(copyPath, exist => {
+  const destPath = path.resolve(copyPath, './lib');
   if (exist) {
     copyIndexFile();
-    traverse(rootPath, copyPath);
+    traverse(rootPath, destPath);
   } else {
     fs.mkdir(copyPath, err => {
-      copyIndexFile();
-      traverse(rootPath, copyPath);
+      if (!err) {
+        fs.mkdir(destPath, err => {
+          copyIndexFile();
+          traverse(rootPath, destPath);
+        })
+      }
     })
   }
 })

@@ -14,13 +14,23 @@ export default class Coordinate implements Vec2{
     this.y = y;
   }
   /**
-     * Returns the sum of two coordinates as a new goomath.Coordinate.
-     * @param {!goomath.Coordinate} a A Coordinate.
-     * @param {!goomath.Coordinate} b A Coordinate.
-     * @return {!goomath.Coordinate} A Coordinate representing the sum of the two
-     *     coordinates.
-     */
-    public static sum(a: Vec2, b: Vec2): Coordinate {
-      return new Coordinate(a.x + b.x, a.y + b.y);
+   * Returns the sum of two coordinates as a new goomath.Coordinate.
+   * @param {!goomath.Coordinate} a A Coordinate.
+   * @param {!goomath.Coordinate} b A Coordinate.
+   * @return {!goomath.Coordinate} A Coordinate representing the sum of the two
+   *     coordinates.
+   */
+  public static sum(a: Vec2, b: Vec2): Coordinate {
+    return new Coordinate(a.x + b.x, a.y + b.y);
+  }
+  /**
+   * Return scaled goomath.Coordinate
+   * @param {number=} s, defaults to 1.
+   * @returns {!goomath.Coordinate} this
+   */
+  public scale(s = 1) {
+    this.x *= s;
+    this.y *= s;
+    return this;
   }
 }

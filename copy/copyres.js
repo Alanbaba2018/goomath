@@ -27,7 +27,7 @@ function copyIndexFile() {
   fs.exists(curPath, exist => {
     if (exist) {
       fs.copyFile(curPath, destPath, err => {
-        console.log('index.d.ts复制完毕');
+        console.log('index.d.ts---copy finished');
       })
     }
   })
@@ -41,7 +41,7 @@ function traverse(filePath, copyPath) {
         fs.stat(dirPath, (err, stats) => {
           if (stats.isFile() && /d\.ts$/.test(dir)) {
             fs.copyFile(dirPath, destinPath, err => {
-              console.log(`${dir}复制完毕`);
+              console.log(`${dir}---copy finished`);
             });
           } else if (stats.isDirectory()) {
             fs.mkdir(destinPath, err => {

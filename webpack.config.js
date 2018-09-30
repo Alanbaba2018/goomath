@@ -1,9 +1,12 @@
 const path = require('path');
-
 module.exports = {
+  // mode: 'development',
   entry: "./index.ts",
   output: {
-      filename: "goomath.js",
+      library: 'goo',
+      libraryTarget: 'umd',
+      umdNamedDefine: true,
+      filename: "index.js",
       path: path.resolve(__dirname,'./')
   },
   resolve: {

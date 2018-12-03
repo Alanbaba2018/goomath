@@ -1,14 +1,14 @@
 {
   "name": "goomath",
-  "version": "1.0.1681",
+  "version": "1.0.1693",
   "description": "A library about xy-coordinate",
   "main": "./index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -P tsconfig.json --module ES6 --outDir build",
-    "compile": "webpack && npm run copyres",
-    "copyres": "node copy/copyres.js",
+    "compile": "webpack && npm run copy",
+    "copy": "node copy/copyres.js",
     "push": "npm version patch --no-git-tag-version&& npm publish"
   },
   "repository": {

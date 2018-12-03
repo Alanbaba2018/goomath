@@ -6,6 +6,9 @@ const copyPath = path.resolve(__dirname, '../dist');
 
 fs.exists(copyPath, exist => {
   const destPath = path.resolve(copyPath, './lib');
+  if (!fs.existsSync(destPath)) {
+    fs.mkdirSync(destPath);
+  }
   if (exist) {
     copyIndexFile();
     traverse(rootPath, destPath);

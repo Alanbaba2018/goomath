@@ -1,4 +1,4 @@
-import { XY } from '../typedef/geometry_type';
+import { XY } from "../..";
 
 export default class Bound {
   public x: number;
@@ -10,14 +10,6 @@ export default class Bound {
     this.y = y;
     this.width = width;
     this.height = height;
-  }
-  /**
-   * 判断两个Bound是否相交
-   * @param bound1 Bound
-   * @param bound2 Bound
-   */
-  public static isOverlaped(bound1: Bound, bound2: Bound): boolean {
-    return bound1.isOverlaped(bound2);
   }
   /**
    * 获取Bound的中心点
@@ -41,5 +33,13 @@ export default class Bound {
    */
   public contain(pt: number[]): boolean {
     return pt[0] > this.x && pt[1] > this.y && pt[0] < (this.x + this.width) && pt[1] < (this.y + this.height);
+  }
+  /**
+   * 判断两个Bound是否相交
+   * @param bound1 Bound
+   * @param bound2 Bound
+   */
+  public static isOverlaped(bound1: Bound, bound2: Bound): boolean {
+    return bound1.isOverlaped(bound2);
   }
 }

@@ -26,7 +26,7 @@ export default class Base {
       [bottomPt, topPt] = [topPt, bottomPt];
     }
     const base: Vector2 = new Vector2(topPt.x - bottomPt.x, topPt.y - bottomPt.y);
-    const comVec: Vector2 = new Vector2(pt[0] - base.x, pt[1] - base.y);
+    const comVec: Vector2 = new Vector2(pt[0] - bottomPt.x, pt[1] - bottomPt.y);
     return Operation.getCrossMultiply(base, comVec) > 0;
   }
 }

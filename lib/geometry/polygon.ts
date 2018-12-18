@@ -20,10 +20,10 @@ export default class Polygon extends Polyline {
       const curPt: number[] = this.coordinates[i];
       const nextPt: number[] = this.coordinates[i + 1];
       if (this._isWithInTrapezoid(pt, curPt, nextPt)) {
-        
+        count++;
       }
     }
-    return false;
+    return count % 2 === 1;
   }
   private _cleanData() {
     const length: number = this.coordinates.length;
@@ -31,7 +31,7 @@ export default class Polygon extends Polyline {
       console.error('Points contained by polygon is too few');
     } else {
       if (!Base.isSamePoint(this.coordinates[0], this.coordinates[length - 1])) {
-        this.coordinates.push(this.coordinates[length - 1]);
+        this.coordinates.push(this.coordinates[0]);
       }
     }
   }

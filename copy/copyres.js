@@ -3,7 +3,9 @@ const path = require('path');
 
 const rootPath = path.resolve(__dirname, '../lib');
 const copyPath = path.resolve(__dirname, '../dist');
-
+if (!fs.existsSync(copyPath)) {
+  fs.mkdirSync(copyPath);
+}
 fs.exists(copyPath, exist => {
   const destPath = path.resolve(copyPath, './lib');
   if (!fs.existsSync(destPath)) {

@@ -1,6 +1,6 @@
 {
   "name": "goomath",
-  "version": "1.0.1699",
+  "version": "1.0.1702",
   "description": "A library about xy-coordinate",
   "main": "./index.js",
   "types": "./dist/index.d.ts",

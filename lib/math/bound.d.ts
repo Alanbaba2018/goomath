@@ -1,5 +1,11 @@
-import { XY } from "../..";
+import { XY } from '../typedef/geometry_type';
 export default class Bound {
+    /**
+     * 判断两个Bound是否相交
+     * @param bound1 Bound
+     * @param bound2 Bound
+     */
+    static isOverlaped(bound1: Bound, bound2: Bound): boolean;
     x: number;
     y: number;
     width: number;
@@ -19,10 +25,4 @@ export default class Bound {
      * @param pt Number[]
      */
     contain(pt: number[]): boolean;
-    /**
-     * 判断两个Bound是否相交
-     * @param bound1 Bound
-     * @param bound2 Bound
-     */
-    static isOverlaped(bound1: Bound, bound2: Bound): boolean;
 }

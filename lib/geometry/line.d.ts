@@ -1,21 +1,6 @@
-import Vector2 from "../math/vector2";
-import { XY } from "../typedef/geometry_type";
+import Vector2 from '../math/vector2';
+import { XY } from '../typedef/geometry_type';
 export default class Line {
-    v0: Vector2;
-    v1: Vector2;
-    constructor(v0: XY | number[], v1: XY | number[]);
-    /**
-     * 获得直线的方向向量
-     */
-    getDirVector(): Vector2;
-    /**
-     * 获得直线方向向量的单位向量
-     */
-    getDirection(): Vector2;
-    /**
-     * 获得直线的长度
-     */
-    getLineLength(): number;
     /**
      * 求点到直线的垂足
      * @param pt 目标点
@@ -35,7 +20,7 @@ export default class Line {
      * @param {XY} pt
      * @param {Line} line
      */
-    static isPointAtLine(pt: XY, line: Line): void;
+    static isPointAtLine(pt: XY, line: Line): boolean;
     /**
      * 判断两条直线是否平行(包含共线)
      * @param {Line} line1
@@ -73,4 +58,19 @@ export default class Line {
      * @param {Vector2} vec2
      */
     static isBothSide(base: Vector2, vec1: Vector2, vec2: Vector2): boolean;
+    v0: Vector2;
+    v1: Vector2;
+    constructor(v0: XY | number[], v1: XY | number[]);
+    /**
+     * 获得直线的方向向量
+     */
+    getDirVector(): Vector2;
+    /**
+     * 获得直线方向向量的单位向量
+     */
+    getDirection(): Vector2;
+    /**
+     * 获得直线的长度
+     */
+    getLineLength(): number;
 }

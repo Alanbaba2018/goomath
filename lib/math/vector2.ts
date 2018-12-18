@@ -1,6 +1,10 @@
 import Operation from './operation';
 
 export default class Vector2 {
+  public static lerp(vec1: Vector2, vec2: Vector2, lerp: number): Vector2 {
+    const dir: Vector2 = new Vector2(vec2.x - vec1.x, vec2.y - vec2.y);
+    return vec1.add(dir.scale(lerp));
+  }
   public x: number;
   public y: number;
   constructor(a: any, b?: number) {
@@ -17,10 +21,6 @@ export default class Vector2 {
       this.x = a.x;
       this.y = a.y;
     }
-  }
-  public static lerp(vec1: Vector2, vec2: Vector2, lerp: number): Vector2 {
-    const dir: Vector2 = new Vector2(vec2.x - vec1.x, vec2.y - vec2.y);
-    return vec1.add(dir.scale(lerp));
   }
   public add(vector2: Vector2): Vector2 {
     this.x += Number(vector2.x);

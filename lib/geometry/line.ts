@@ -120,7 +120,7 @@ export default class Line {
     const l2: number = Math.abs(Operation.getCrossMultiply(vec1, vec4));
     let ratio = 0;
     // 线段相交的情况
-    if (this.isInsersectOfSegment(line1, line2)) {
+    if (this.isBothSide(vec1, vec3, vec4)) {
       ratio = l1 / (l1 + l2);
     } else {
       ratio = l1 / (l1 - l2);

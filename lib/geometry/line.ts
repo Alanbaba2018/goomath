@@ -1,30 +1,46 @@
-import Vector2 from "./vector2"
-import { XY } from "../typedef/geometry_type"
-import Operation from './operation'
+import Vector2 from "../math/vector2";
+import { XY } from "../typedef/geometry_type";
+import Operation from '../math/operation';
+import Base from '../math/base';
 
 export default class Line {
   public v0: Vector2;
   public v1: Vector2;
-  constructor(v0: XY, v1: XY) {
-    this.v0 = new Vector2(v0.x, v0.y);
-    this.v1 = new Vector2(v1.x, v1.y);
+  constructor(v0: XY | number[], v1: XY | number[]) {
+    v0 = Base.transformPointToArray(v0);
+    v1 = Base.transformPointToArray(v1);
+    this.v0 = new Vector2(v0[0], v0[1]);
+    this.v1 = new Vector2(v1[0], v1[1]);
   }
-  getDirVector(): Vector2 {
+  /**
+   * 获得直线的方向向量
+   */
+  public getDirVector(): Vector2 {
     const x: number = this.v1.x - this.v0.x;
     const y: number = this.v1.y - this.v0.y;
     const vec: Vector2 = new Vector2(x, y);
     return vec;
   }
-  getDirection(): Vector2 {
+  /**
+   * 获得直线方向向量的单位向量
+   */
+  public getDirection(): Vector2 {
     const vec: Vector2 = this.getDirVector();
     return vec.normalize();
   }
-  getLineLength() {
+  /**
+   * 获得直线的长度
+   */
+  public getLineLength() {
     const vec: Vector2 = this.getDirVector();
     return vec.getModelLength();
   }
-  getBBox() {
-  }
+  /**
+   * 求点到直线的垂足
+   * @param pt 目标点
+   * @param v0 直线起点
+   * @param v1 直线终点
+   */
   static getPedalPointOfLine(pt: XY, v0: XY, v1: XY): Vector2 {
     const vec0: Vector2 = new Vector2(pt.x - v0.x, pt.y - v0.y);
     const vec1: Vector2 = new Vector2(v1.x - v0.x, v1.y - v0.y);
@@ -32,6 +48,12 @@ export default class Line {
     const dis: number = dot / vec1.getModelLength();
     return new Vector2(v0.x, v0.y).add(vec1.normalize().scale(dis));
   }
+  /**
+   * 求点到直线的距离
+   * @param pt 目标点
+   * @param v0 直线起点
+   * @param v1 直线终点
+   */
   static getDistanceOfPtToLine(pt: XY, v0: XY, v1: XY) {
     const vec0: Vector2 = new Vector2(pt.x - v0.x, pt.y - v0.y);
     const vec1: Vector2 = new Vector2(v1.x - v0.x, v1.y - v0.y);

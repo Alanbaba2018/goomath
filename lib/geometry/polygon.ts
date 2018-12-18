@@ -1,0 +1,43 @@
+import Polyline from './polyline';
+import { XY } from '../typedef/geometry_type';
+import Bound from '../math/bound';
+import Base from '../math/base';
+
+export default class Polygon extends Polyline {
+  constructor(coordinates: Array<XY | number[]>) {
+    super(coordinates);
+    this._cleanData();
+  }
+  public contain(pt: XY | number[]): boolean {
+    pt = Base.transformPointToArray(pt);
+    const bound: Bound = this.getBound();
+    if (this.coordinates.length < 4 || !bound.contain(pt)) {
+      return false;
+    }
+    let count: number = 0;
+    const {length} = this.coordinates;
+    for (let i = 0; i < length - 1; ++i) {
+      const curPt: number[] = this.coordinates[i];
+      const nextPt: number[] = this.coordinates[i + 1];
+      if (this._isWithInTrapezoid(pt, curPt, nextPt)) {
+        
+      }
+    }
+    return false;
+  }
+  private _cleanData() {
+    const length: number = this.coordinates.length;
+    if (length < 3) {
+      console.error('Points contained by polygon is too few');
+    } else {
+      if (!Base.isSamePoint(this.coordinates[0], this.coordinates[length - 1])) {
+        this.coordinates.push(this.coordinates[length - 1]);
+      }
+    }
+  }
+  private _isWithInTrapezoid(pt: number[], curPt: number[], nextPt: number[]): boolean {
+    const maxY: number = Math.max(curPt[1], nextPt[1]);
+    const minY: number = Math.min(curPt[1], nextPt[1]);
+    return Base.isLeftOfLine(pt, curPt, nextPt) && pt[1] > minY && pt[1] < maxY;
+  }
+}

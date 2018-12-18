@@ -2,31 +2,42 @@ import Operation from './operation';
 export default class Vector2 {
   public x: number;
   public y: number;
-  constructor(x: number, y: number) {
-    this.x = x;
-    this.y = y;
+  constructor(a: any, b?: number) {
+    if (typeof a === 'number' && typeof b === 'number') {
+      this.x = a;
+      this.y = b;
+    } else if (a instanceof Array && a.length > 1 && b === undefined) {
+      this.x = a[0];
+      this.y = a[1];
+    } else {
+      if (!a.hasOwnProperty('x') || !a.hasOwnProperty('y')) {
+        console.error('Vector constructor call a error.');
+      }
+      this.x = a.x;
+      this.y = a.y;
+    }
   }
-  add(vector2: Vector2): Vector2 {
+  public add(vector2: Vector2): Vector2 {
     this.x += Number(vector2.x);
     this.y += Number(vector2.y);
     return this;
   }
-  substract(vector2: Vector2): Vector2 {
+  public substract(vector2: Vector2): Vector2 {
     this.x -= Number(vector2.x);
     this.y -= Number(vector2.y);
     return this;
   }
-  normalize(): Vector2 {
+  public normalize(): Vector2 {
     const dis = this.getModelLength();
     if (dis === 0) {
       return new Vector2(0, 0);
     }
     return new Vector2(this.x / dis, this.y / dis);
   }
-  clone(): Vector2 {
+  public clone(): Vector2 {
     return new Vector2(this.x, this.y);
   }
-  rotate(angle: number): Vector2 {
+  public rotate(angle: number): Vector2 {
     const rotatedRad: number = Operation.degreeToRadius(angle);
     const x = this.x * Math.cos(rotatedRad) - this.y * Math.sin(rotatedRad);
     const y = this.x * Math.sin(rotatedRad) + this.y * Math.cos(rotatedRad);
@@ -34,12 +45,16 @@ export default class Vector2 {
     this.y = y;
     return this;
   }
-  scale(multiple: number): Vector2 {
+  public scale(multiple: number): Vector2 {
     this.x *= multiple;
     this.y *= multiple;
     return this;
   }
-  getModelLength(): number {
+  public getModelLength(): number {
     return Math.sqrt(this.x ** 2 + this.y ** 2);
+  }
+  public static lerp(vec1: Vector2, vec2: Vector2, lerp: number): Vector2 {
+    const dir: Vector2 = new Vector2(vec2.x - vec1.x, vec2.y - vec2.y);
+    return vec1.add(dir.scale(lerp));
   }
 }
